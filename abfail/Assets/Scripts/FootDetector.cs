@@ -6,11 +6,11 @@ public class FootDetector : MonoBehaviour {
 
     public CharacterController Character;
 
-    private void OnTriggerEnter2D(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.CompareTag("foot"))
+        if (collision.CompareTag("foot"))
         {
-            Character.PlatformHit();
+            Character.PlatformHit(this.GetComponent<Collider2D>());
         }
     }
 }

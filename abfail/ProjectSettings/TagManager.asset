@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - killBox
+  - foot
+  - platform
   layers:
   - Default
   - TransparentFX
