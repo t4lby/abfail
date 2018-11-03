@@ -10,7 +10,7 @@ public enum Status
     OnPlatform
 }
 
-public class CharacterController : MonoBehaviour {
+public class CharController : MonoBehaviour {
 
     public List<Rigidbody2D> CharacterRbs;
     public float deathSpeed;
@@ -19,12 +19,13 @@ public class CharacterController : MonoBehaviour {
     private bool charAttemptedStop;
     private Status charStatus;
     private Collider2D currentPlatformCollider;
-    private TargetJoint2D platformTargetJoint;
+    private List<TargetJoint2D> platformTargetJoints;
 
     private void Start()
     {
         charAttemptedStop = false;
         charStatus = Status.Falling;
+        platformTargetJoints = new List<TargetJoint2D>();
     }
 
     private void Update ()
@@ -36,7 +37,8 @@ public class CharacterController : MonoBehaviour {
                 currentPlatformCollider.enabled = false;
                 charAttemptedStop = false;
                 charStatus = Status.Falling;
-                Destroy(platformTargetJoint);
+                platformTargetJoints.ForEach(j => Destroy(j));
+                platformTargetJoints.Clear();
                 foreach (var rb in CharacterRbs)
                 {
                     rb.AddForce(new Vector2(0, jumpForce));
@@ -57,7 +59,14 @@ public class CharacterController : MonoBehaviour {
             && charStatus == Status.Falling)
         {
             charStatus = Status.OnPlatform;
-            platformTargetJoint = this.gameObject.AddComponent<TargetJoint2D>();
+            platformTargetJoints.Add(this.gameObject.AddComponent<TargetJoint2D>());
+            var feet = FindObjectsOfType<Transform>()
+                               .Where(go => go.gameObject.CompareTag("foot"));
+            foreach (var foot in feet)
+            {
+                platformTargetJoints.Add(foot.gameObject.AddComponent<TargetJoint2D>());
+            }
+
         }
         else if (charStatus == Status.Falling)
         {

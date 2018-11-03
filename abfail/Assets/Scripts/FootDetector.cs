@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FootDetector : MonoBehaviour {
 
-    public CharacterController Character;
+    public CharController Character;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
