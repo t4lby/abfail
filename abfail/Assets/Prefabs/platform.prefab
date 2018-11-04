@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Character: {fileID: 0}
+  killOffset: 50
 --- !u!212 &212485939984638756
 SpriteRenderer:
   m_ObjectHideFlags: 1

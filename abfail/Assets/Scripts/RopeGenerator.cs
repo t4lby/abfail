@@ -8,24 +8,28 @@ public class RopeGenerator : MonoBehaviour {
     public Transform cameraTransform;
     public Vector3 spawnOffset;
     public Vector3 initialSpawnLocation;
+    public int spawnAheadAmount;
 
     private Vector3 lastSpawnPosition;
 
 	void Start () {
         // spawn initial rope
-        lastSpawnPosition = Instantiate(
-            ropePrefab,
-            initialSpawnLocation,
-            Quaternion.identity)
-            .transform.
-            position;
+        for (int i = 0; i < spawnAheadAmount; i++)
+        {
+            lastSpawnPosition = Instantiate(
+                ropePrefab,
+                initialSpawnLocation + i*spawnOffset,
+                Quaternion.identity)
+                .transform.
+                position;
+        }
 	}
 	
 	    
 	void Update ()
     {
         //spawn next rope when camera position gets lower than first.
-        if (cameraTransform.position.y < lastSpawnPosition.y)
+        if (cameraTransform.position.y < lastSpawnPosition.y - spawnAheadAmount * spawnOffset.y)
         {
             lastSpawnPosition = Instantiate(
                 ropePrefab,

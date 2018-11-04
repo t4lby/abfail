@@ -15,6 +15,7 @@ public class CharController : MonoBehaviour {
     public List<Rigidbody2D> CharacterRbs;
     public float deathSpeed;
     public float jumpForce;
+    public PlatformSpawner platformSpawner;
 	
     private bool charAttemptedStop;
     private Status charStatus;
@@ -66,11 +67,12 @@ public class CharController : MonoBehaviour {
             {
                 platformTargetJoints.Add(foot.gameObject.AddComponent<TargetJoint2D>());
             }
-
+            platformSpawner.SpawnNextPlatform(this);
         }
         else if (charStatus == Status.Falling)
         {
             //kill
+            this.GetComponent<AudioSource>().Play();
             charStatus = Status.Dead;
         }
     }
