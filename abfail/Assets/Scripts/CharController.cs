@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum Status
 {
@@ -16,6 +17,7 @@ public class CharController : MonoBehaviour {
     public float deathSpeed;
     public float jumpForce;
     public PlatformSpawner platformSpawner;
+    public GameObject restartButton;
 	
     private bool charAttemptedStop;
     private Status charStatus;
@@ -27,11 +29,13 @@ public class CharController : MonoBehaviour {
         charAttemptedStop = false;
         charStatus = Status.Falling;
         platformTargetJoints = new List<TargetJoint2D>();
+        restartButton.SetActive(false);
     }
 
     private void Update ()
     {
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (Input.GetKeyDown(KeyCode.Space) || 
+            (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
             if (charStatus == Status.OnPlatform)
             {
@@ -74,7 +78,13 @@ public class CharController : MonoBehaviour {
             //kill
             this.GetComponent<AudioSource>().Play();
             charStatus = Status.Dead;
+            restartButton.SetActive(true);
         }
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("main");
     }
 
     private void SetVelocitiesToZero(List<Rigidbody2D> rbs)
