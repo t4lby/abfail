@@ -493,6 +493,7 @@ MonoBehaviour:
   jumpForce: 600
   platformSpawner: {fileID: 2072103094}
   restartButton: {fileID: 751305644}
+  mainCamera: {fileID: 519420032}
 --- !u!82 &163939205
 AudioSource:
   m_ObjectHideFlags: 0
@@ -672,7 +673,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -788,6 +789,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -816,7 +818,7 @@ MonoBehaviour:
   Target: {fileID: 42698693}
   SmoothSpeed: 0.125
   MinOrthopedicSize: 1
-  Offset: {x: 0, y: 0, z: -1}
+  Offset: {x: 0, y: -10, z: -1}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -870,6 +872,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bac134b65cac24916961794735d029b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderMode: 0
+  kernelSize: 0
+  interpolation: 1
+  downsample: 1
+  iterations: 2
+  gammaCorrection: 1
+  blurMaterial: {fileID: 2100000, guid: d51b0fb5a007b49b2bccef864ffdb1bc, type: 2}
+  UIMaterial: {fileID: 2100000, guid: 407dd68bb71384aa1be7d7ded58c7fbd, type: 2}
 --- !u!1 &751305644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1416,7 +1437,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 04ccdf353dbb5a14d89345176083e55f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1755,7 +1776,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1934,8 +1955,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialPlatform: {fileID: 1438471869}
-  initialOffset: {x: 0, y: -30}
-  minorRandomOffset: 0.2
+  platformOffset: 5
+  minPlatformDistance: 10
   platformPrefab: {fileID: 1418515874762308, guid: 625a13e4fcf310d438524860b8e28753,
     type: 2}
 --- !u!4 &2072103095

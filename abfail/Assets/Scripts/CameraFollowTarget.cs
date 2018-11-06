@@ -12,11 +12,14 @@ public class CameraFollowTarget : MonoBehaviour {
     public float MinOrthopedicSize = 1;
 
     public Vector3 Offset;
-	
-	private void LateUpdate ()
+
+
+    private void FixedUpdate()
     {
-        transform.position = Target.position + Offset;
-	}
+        transform.position = Vector3.Lerp(transform.position,
+                                          Target.position + Offset,
+                                          SmoothSpeed);
+    }
 
     private void Update()
     {

@@ -18,6 +18,8 @@ public class CharController : MonoBehaviour {
     public float jumpForce;
     public PlatformSpawner platformSpawner;
     public GameObject restartButton;
+    public Transform mainCamera;
+    public float platformSpawnAhead = 3;
 	
     private bool charAttemptedStop;
     private Status charStatus;
@@ -30,6 +32,10 @@ public class CharController : MonoBehaviour {
         charStatus = Status.Falling;
         platformTargetJoints = new List<TargetJoint2D>();
         restartButton.SetActive(false);
+        for (int i = 0; i < platformSpawnAhead; i++)
+        {
+            platformSpawner.SpawnNextPlatform(this);
+        }
     }
 
     private void Update ()
@@ -77,8 +83,14 @@ public class CharController : MonoBehaviour {
         {
             //kill
             this.GetComponent<AudioSource>().Play();
+            CharacterRbs
+                .ForEach
+                (
+                    (obj) => obj.GetComponent<Rigidbody2D>().constraints = 
+                                RigidbodyConstraints2D.None
+                );
             charStatus = Status.Dead;
-            restartButton.SetActive(true);
+            StartCoroutine(WaitThenPostDeath(2.0f));
         }
     }
 
@@ -93,5 +105,12 @@ public class CharController : MonoBehaviour {
         {
             rb.velocity = Vector2.zero;
         }
+    }
+
+    private IEnumerator WaitThenPostDeath(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        mainCamera.GetComponent<SuperBlur.SuperBlur>().enabled = true;
+        restartButton.SetActive(true);
     }
 }
