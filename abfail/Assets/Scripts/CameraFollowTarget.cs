@@ -13,11 +13,14 @@ public class CameraFollowTarget : MonoBehaviour {
 
     public Vector3 Offset;
 
+    public float LookAhead;
+
 
     private void FixedUpdate()
     {
         transform.position = Vector3.Lerp(transform.position,
-                                          Target.position + Offset,
+                                          Target.position + Offset + 
+                                          new Vector3 (0, Target.GetComponent<Rigidbody2D>().velocity.y * LookAhead, 0),
                                           SmoothSpeed);
     }
 
