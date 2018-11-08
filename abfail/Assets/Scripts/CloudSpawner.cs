@@ -12,6 +12,7 @@ public class CloudSpawner : MonoBehaviour {
     public float cloudDepth = 1;
     public float maxCloudSize;
     public float minCloudSize;
+    public List<Sprite> CloudSprites;
 
     private float nextSpawnDistance;
     private Vector3 lastCamPosition;
@@ -29,6 +30,7 @@ public class CloudSpawner : MonoBehaviour {
                 cloudPrefab,
                 cameraTransform.position + meanRelativeSpawnPosition + new Vector3(Random.Range(- spawnRadius, spawnRadius), 0, cloudDepth),
                 Quaternion.identity);
+            cloud.GetComponent<SpriteRenderer>().sprite = CloudSprites[Random.Range(0, CloudSprites.Count - 1)];
             cloud.transform.localScale *= Random.Range(minCloudSize, maxCloudSize); 
             lastCamPosition = cameraTransform.position;
             nextSpawnDistance = Random.Range(1 / spawnFrequency, 2 / spawnFrequency);

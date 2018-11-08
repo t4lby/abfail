@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public enum Status
 {
@@ -12,19 +13,26 @@ public enum Status
 }
 
 public class CharController : MonoBehaviour {
-
+    
     public List<Rigidbody2D> CharacterRbs;
+    public List<Rigidbody2D> HandRbs;
     public float deathSpeed;
     public float jumpForce;
     public PlatformSpawner platformSpawner;
     public GameObject restartButton;
     public Transform mainCamera;
+    public float ropeHandsXCoord;
     public float platformSpawnAhead = 3;
+    public FaceController faceController;
+    public float CalmSpeed;
+    public float PanicSpeed;
+    public Text ScoreText;
 	
     private bool charAttemptedStop;
     private Status charStatus;
     private Collider2D currentPlatformCollider;
     private List<TargetJoint2D> platformTargetJoints;
+    private int score;
 
     private void Start()
     {
@@ -36,6 +44,8 @@ public class CharController : MonoBehaviour {
         {
             platformSpawner.SpawnNextPlatform(this);
         }
+        FixHands();
+        score = 0;
     }
 
     private void Update ()
@@ -54,11 +64,36 @@ public class CharController : MonoBehaviour {
                 {
                     rb.AddForce(new Vector2(0, jumpForce));
                 }
+                FixHands();
             }
             else if (charStatus == Status.Falling && !charAttemptedStop)
             {
                 SetVelocitiesToZero(CharacterRbs);
+                ReleaseHands();
                 charAttemptedStop = true;
+            }
+        }
+
+        if (charStatus == Status.OnPlatform)
+        {
+            ReleaseHands();
+            HandRbs.ForEach(rb => rb.MovePosition( new Vector3(ropeHandsXCoord,
+                                                               rb.transform.position.y)));
+        }
+        var speed = GetComponent<Rigidbody2D>().velocity.magnitude;
+        if (charStatus != Status.Dead && !charAttemptedStop)
+        {
+            if (speed < CalmSpeed)
+            {
+                faceController.SetCalm();
+            }
+            else if (speed < PanicSpeed)
+            {
+                faceController.SetLessCalm();
+            }
+            else
+            {
+                faceController.SetPanicked();
             }
         }
 	}
@@ -77,7 +112,10 @@ public class CharController : MonoBehaviour {
             {
                 platformTargetJoints.Add(foot.gameObject.AddComponent<TargetJoint2D>());
             }
+            score += 1;
+            ScoreText.text = score.ToString();
             platformSpawner.SpawnNextPlatform(this);
+            charAttemptedStop = false;
         }
         else if (charStatus == Status.Falling)
         {
@@ -112,5 +150,15 @@ public class CharController : MonoBehaviour {
         yield return new WaitForSeconds(seconds);
         mainCamera.GetComponent<SuperBlur.SuperBlur>().enabled = true;
         restartButton.SetActive(true);
+    }
+
+    private void FixHands()
+    {
+        HandRbs.ForEach(rb => rb.constraints = RigidbodyConstraints2D.FreezePositionX);
+    }
+
+    private void ReleaseHands()
+    {
+        HandRbs.ForEach(rb => rb.constraints = RigidbodyConstraints2D.None);
     }
 }
