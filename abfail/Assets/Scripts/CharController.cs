@@ -24,9 +24,11 @@ public class CharController : MonoBehaviour {
     public float ropeHandsXCoord;
     public float platformSpawnAhead = 3;
     public FaceController faceController;
+    public CameraFollowTarget cameraController;
     public float CalmSpeed;
     public float PanicSpeed;
     public Text ScoreText;
+    public Text speedText;
 	
     private bool charAttemptedStop;
     private Status charStatus;
@@ -81,6 +83,7 @@ public class CharController : MonoBehaviour {
                                                                rb.transform.position.y)));
         }
         var speed = GetComponent<Rigidbody2D>().velocity.magnitude;
+        speedText.text = Mathf.Round( speed ) / 10  + "m/s";
         if (charStatus != Status.Dead && !charAttemptedStop)
         {
             if (speed < CalmSpeed)
@@ -124,9 +127,20 @@ public class CharController : MonoBehaviour {
             CharacterRbs
                 .ForEach
                 (
-                    (obj) => obj.GetComponent<Rigidbody2D>().constraints = 
-                                RigidbodyConstraints2D.None
+                    (obj) => obj.GetComponent<Rigidbody2D>().constraints =
+                        RigidbodyConstraints2D.None
                 );
+            CharacterRbs
+                .ForEach
+                (
+                    (obj) => obj.GetComponent<Rigidbody2D>().drag = 0
+                );
+            CharacterRbs
+                .ForEach
+                (
+                    (obj) => obj.GetComponent<Rigidbody2D>().gravityScale = 3
+                );
+            cameraController.LookAhead = 0.1f;
             charStatus = Status.Dead;
             StartCoroutine(WaitThenPostDeath(2.0f));
         }
