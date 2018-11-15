@@ -29,6 +29,7 @@ public class CharController : MonoBehaviour {
     public float PanicSpeed;
     public Text ScoreText;
     public Text speedText;
+    public Image healthMaskImage;
 	
     private bool charAttemptedStop;
     private Status charStatus;
@@ -104,7 +105,15 @@ public class CharController : MonoBehaviour {
     public void PlatformHit(Collider2D platformCollider)
     {
         currentPlatformCollider = platformCollider;
-        if (CharacterRbs.Select(rb => rb.velocity.magnitude).Sum() / CharacterRbs.Count() < deathSpeed 
+        var speed = CharacterRbs.Select(rb => rb.velocity.magnitude).Sum() / CharacterRbs.Count();
+        if (charStatus == Status.Falling)
+        {
+            healthMaskImage.rectTransform.sizeDelta = new Vector2(healthMaskImage.rectTransform.sizeDelta.x,
+                                                                  speed * 250 / deathSpeed);
+            healthMaskImage.rectTransform.anchoredPosition = new Vector3(healthMaskImage.rectTransform.anchoredPosition.x,
+                                                                         speed * 125 / deathSpeed);
+        }
+        if (speed < deathSpeed 
             && charStatus == Status.Falling)
         {
             charStatus = Status.OnPlatform;
