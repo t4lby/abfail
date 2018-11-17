@@ -136,18 +136,7 @@ public class CharController : MonoBehaviour {
             CharacterRbs
                 .ForEach
                 (
-                    (obj) => obj.GetComponent<Rigidbody2D>().constraints =
-                        RigidbodyConstraints2D.None
-                );
-            CharacterRbs
-                .ForEach
-                (
-                    (obj) => obj.GetComponent<Rigidbody2D>().drag = 0
-                );
-            CharacterRbs
-                .ForEach
-                (
-                    (obj) => obj.GetComponent<Rigidbody2D>().gravityScale = 3
+                    SetRbDead
                 );
             cameraController.LookAhead = 0.1f;
             charStatus = Status.Dead;
@@ -183,5 +172,15 @@ public class CharController : MonoBehaviour {
     private void ReleaseHands()
     {
         HandRbs.ForEach(rb => rb.constraints = RigidbodyConstraints2D.None);
+    }
+    private void SetRbDead(Rigidbody2D rb)
+    {
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.drag = 0;
+        rb.gravityScale = 3;
+        rb.GetComponents<HingeJoint2D>().ToList()
+          .ForEach(
+              j => j.limits = new JointAngleLimits2D { min = 0, max = 359 }
+             );
     }
 }
