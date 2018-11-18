@@ -30,8 +30,15 @@ public class CharController : MonoBehaviour {
     public Text ScoreText;
     public Text speedText;
     public Image healthMaskImage;
+    public Image failImage;
+    public GameObject finalScore;
+    public GameObject bestScore;
+    public GameObject currentScore;
+    public GameObject currentSpeed;
+    public GameObject[] healthObjects;
 	
     private bool charAttemptedStop;
+    private float health;
     private Status charStatus;
     private Collider2D currentPlatformCollider;
     private List<TargetJoint2D> platformTargetJoints;
@@ -84,7 +91,7 @@ public class CharController : MonoBehaviour {
                                                                rb.transform.position.y)));
         }
         var speed = GetComponent<Rigidbody2D>().velocity.magnitude;
-        speedText.text = Mathf.Round( speed ) / 10  + "m/s";
+        speedText.text = Mathf.Round( speed ) / 10  + " m / s";
         if (charStatus != Status.Dead && !charAttemptedStop)
         {
             if (speed < CalmSpeed)
@@ -100,6 +107,11 @@ public class CharController : MonoBehaviour {
                 faceController.SetPanicked();
             }
         }
+        if (charStatus == Status.Falling && health > 0)
+        {
+            health -= Time.deltaTime;
+            SetHealth(health);
+        }
 	}
 
     public void PlatformHit(Collider2D platformCollider)
@@ -108,10 +120,8 @@ public class CharController : MonoBehaviour {
         var speed = CharacterRbs.Select(rb => rb.velocity.magnitude).Sum() / CharacterRbs.Count();
         if (charStatus == Status.Falling)
         {
-            healthMaskImage.rectTransform.sizeDelta = new Vector2(healthMaskImage.rectTransform.sizeDelta.x,
-                                                                  speed * 250 / deathSpeed);
-            healthMaskImage.rectTransform.anchoredPosition = new Vector3(healthMaskImage.rectTransform.anchoredPosition.x,
-                                                                         speed * 125 / deathSpeed);
+            health = speed / deathSpeed;
+            SetHealth(health);
         }
         if (speed < deathSpeed 
             && charStatus == Status.Falling)
@@ -140,7 +150,20 @@ public class CharController : MonoBehaviour {
                 );
             cameraController.LookAhead = 0.1f;
             charStatus = Status.Dead;
-            StartCoroutine(WaitThenPostDeath(2.0f));
+            if (PlayerPrefs.HasKey("BestScore"))
+            {
+                if (PlayerPrefs.GetInt("BestScore") < score)
+                {
+                    PlayerPrefs.SetInt("BestScore", score);
+                }
+            }
+            else 
+            {
+                PlayerPrefs.SetInt("BestScore", score);
+            }
+            finalScore.GetComponentInChildren<Text>().text = score.ToString();
+            bestScore.GetComponentInChildren<Text>().text = PlayerPrefs.GetInt("BestScore").ToString();
+            StartCoroutine(WaitThenPostDeath(3.0f));
         }
     }
 
@@ -161,7 +184,13 @@ public class CharController : MonoBehaviour {
     {
         yield return new WaitForSeconds(seconds);
         mainCamera.GetComponent<SuperBlur.SuperBlur>().enabled = true;
+        failImage.enabled = true;
+        bestScore.SetActive(true);
+        finalScore.SetActive(true);
         restartButton.SetActive(true);
+        currentScore.SetActive(false);
+        currentSpeed.SetActive(false);
+        healthObjects.ToList().ForEach(obj => obj.SetActive(false));
     }
 
     private void FixHands()
@@ -180,7 +209,19 @@ public class CharController : MonoBehaviour {
         rb.gravityScale = 3;
         rb.GetComponents<HingeJoint2D>().ToList()
           .ForEach(
-              j => j.limits = new JointAngleLimits2D { min = 0, max = 359 }
+              j => j.limits = new JointAngleLimits2D { min = -180, max = 180 }
              );
+    }
+    private void SetHealth(float value)
+    {
+        healthMaskImage.rectTransform.sizeDelta = new Vector2(healthMaskImage.rectTransform.sizeDelta.x,
+                                                                  value * 200);
+        healthMaskImage.rectTransform.anchoredPosition = new Vector3(healthMaskImage.rectTransform.anchoredPosition.x,
+                                                                     value * 100);
+    }
+
+    public void QuitToMenu()
+    {
+        SceneManager.LoadScene("menu");
     }
 }
