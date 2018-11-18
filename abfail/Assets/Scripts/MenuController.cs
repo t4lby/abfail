@@ -17,6 +17,6 @@ public class MenuController : MonoBehaviour {
 
     public void LoadOutfits()
     {
-        
+        SceneManager.LoadScene("outfits");
     }
 }
