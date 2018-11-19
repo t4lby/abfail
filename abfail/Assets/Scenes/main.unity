@@ -593,7 +593,7 @@ GameObject:
   - component: {fileID: 163939205}
   m_Layer: 0
   m_Name: characterHead
-  m_TagString: Untagged
+  m_TagString: head
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3269,9 +3269,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c674c013ead00495c9a7869329e6652e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CalmFace: {fileID: 21300000, guid: 6d791dd3728c245a886e5cc1115cfca6, type: 3}
-  LessCalmFace: {fileID: 21300000, guid: a788863e5e3b14eef9b9d41efca0fafc, type: 3}
-  PanickedFace: {fileID: 21300000, guid: bc57380c9d4ef47009585130f4165f53, type: 3}
+  CalmFace: {fileID: 21300000, guid: 90d049fa2eea3422194cfbc35dbe72ad, type: 3}
+  LessCalmFace: {fileID: 21300000, guid: 736b1bf79d5b44784894f64d441f16af, type: 3}
+  PanickedFace: {fileID: 21300000, guid: 18c6cf57d79ad41608e2e928e7fff072, type: 3}
+  DeadFace: {fileID: 21300000, guid: a318e56e032ed498587804ef39ee37f7, type: 3}
 --- !u!212 &1602735298
 SpriteRenderer:
   m_ObjectHideFlags: 0

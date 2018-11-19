@@ -7,6 +7,7 @@ TagManager:
   - killBox
   - foot
   - platform
+  - head
   layers:
   - Default
   - TransparentFX

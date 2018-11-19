@@ -7,6 +7,7 @@ public class FaceController : MonoBehaviour
     public Sprite CalmFace;
     public Sprite LessCalmFace;
     public Sprite PanickedFace;
+    public Sprite DeadFace;
 
     public void SetCalm()
     {
@@ -21,5 +22,10 @@ public class FaceController : MonoBehaviour
     public void SetPanicked()
     {
         GetComponent<SpriteRenderer>().sprite = PanickedFace;
+    }
+
+    public void SetDead()
+    {
+        GetComponent<SpriteRenderer>().sprite = DeadFace;
     }
 }

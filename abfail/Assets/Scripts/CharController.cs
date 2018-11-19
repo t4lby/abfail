@@ -148,8 +148,10 @@ public class CharController : MonoBehaviour {
                 (
                     SetRbDead
                 );
+            faceController.SetDead();
             cameraController.LookAhead = 0.1f;
             charStatus = Status.Dead;
+            processUnlocks();
             if (PlayerPrefs.HasKey("BestScore"))
             {
                 if (PlayerPrefs.GetInt("BestScore") < score)
@@ -207,7 +209,9 @@ public class CharController : MonoBehaviour {
         rb.constraints = RigidbodyConstraints2D.None;
         rb.drag = 0;
         rb.gravityScale = 3;
-        rb.GetComponents<HingeJoint2D>().ToList()
+        rb.GetComponents<HingeJoint2D>()
+          .Where(j => j.connectedBody.tag != "head")
+          .ToList()
           .ForEach(
               j => j.limits = new JointAngleLimits2D { min = -180, max = 180 }
              );
@@ -223,5 +227,33 @@ public class CharController : MonoBehaviour {
     public void QuitToMenu()
     {
         SceneManager.LoadScene("menu");
+    }
+
+    public void processUnlocks()
+    {
+        // hard coded unlock logic
+        if (score > 10)
+        {
+            UnlockTorsoIndex(1);
+        }
+
+        if (score > 15)
+        {
+            UnlockTrouserIndex(1);
+        }
+    }
+
+    private void UnlockTorsoIndex(int index)
+    {
+        var unlockChars = PlayerPrefs.GetString("TorsoUnlock").ToCharArray();
+        unlockChars[index] = '1';
+        PlayerPrefs.SetString("TorsoUnlock", new string(unlockChars));
+    }
+
+    private void UnlockTrouserIndex(int index)
+    {
+        var unlockChars = PlayerPrefs.GetString("TrouserUnlock").ToCharArray();
+        unlockChars[index] = '1';
+        PlayerPrefs.SetString("TrouserUnlock", new string(unlockChars));
     }
 }

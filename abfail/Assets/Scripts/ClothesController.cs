@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +13,8 @@ public class ClothesController : MonoBehaviour {
     public SpriteRenderer crotchRenderer;
     public SpriteRenderer leftLegRenderer;
     public SpriteRenderer rightLegRenderer;
+    public Renderer trouserCriteriaRender;
+    public Renderer torsoCriteriaRender;
 
     public SpriteRenderer wang;
     public SpriteRenderer wong;
@@ -20,23 +24,24 @@ public class ClothesController : MonoBehaviour {
     public List<Sprite> torsoSprites;
     public List<Sprite> leftArmSprites;
     public List<Sprite> rightArmSprites;
+
+    public List<String> torsoUnlockCriteria;
+
     public List<Sprite> crotchSprites;
     public List<Sprite> leftLegSprites;
     public List<Sprite> rightLegSprites;
 
+    public List<String> trouserUnlockCriteria;
+
+
     private int torsoCount;
     private int trouserCount;
+    private int torsoIndex;
+    private int trouserIndex;
 
     private void Start()
     {
-        if (!PlayerPrefs.HasKey("TorsoIndex"))
-        {
-            PlayerPrefs.SetInt("TorsoIndex", 0);
-        }
-        if (!PlayerPrefs.HasKey("TrouserIndex"))
-        {
-            PlayerPrefs.SetInt("TrouserIndex", 0);
-        }
+        //Check consistency of sprite counts.
         if (!(torsoSprites.Count == leftArmSprites.Count &&
               torsoSprites.Count == rightArmSprites.Count))
         {
@@ -55,24 +60,39 @@ public class ClothesController : MonoBehaviour {
         {
             trouserCount = crotchSprites.Count;
         }
+
+        // set up player prefs
+        if (!PlayerPrefs.HasKey("TorsoIndex"))
+        {
+            PlayerPrefs.SetInt("TorsoIndex", 0);
+        }
+        if (!PlayerPrefs.HasKey("TrouserIndex"))
+        {
+            PlayerPrefs.SetInt("TrouserIndex", 0);
+        }
+        if (!PlayerPrefs.HasKey("TorsoUnlock"))
+        {
+            PlayerPrefs.SetString("TorsoUnlock", "10");
+        }
+        if (!PlayerPrefs.HasKey("TrouserUnlock"))
+        {
+            PlayerPrefs.SetString("TrouserUnlock", "10");
+        }
+
         DressTorso(PlayerPrefs.GetInt("TorsoIndex"));
         DressLegs(PlayerPrefs.GetInt("TrouserIndex"));
     }
 
     public void IncrementTorsoIndex(int increment)
     {
-        var torsoIndex = PlayerPrefs.GetInt("TorsoIndex");
         torsoIndex = (torsoIndex + increment + torsoCount + 1) % (torsoCount + 1);
         DressTorso(torsoIndex);
-        PlayerPrefs.SetInt("TorsoIndex", torsoIndex);
     }
 
     public void IncrementTrouserIndex(int increment)
     {
-        var trouserIndex = PlayerPrefs.GetInt("TrouserIndex");
         trouserIndex = (trouserIndex + increment + trouserCount + 1) % (trouserCount + 1);
         DressLegs(trouserIndex);
-        PlayerPrefs.SetInt("TrouserIndex", trouserIndex);
     }
 
     private void DressTorso(int index)
@@ -92,6 +112,23 @@ public class ClothesController : MonoBehaviour {
             leftArmRenderer.sprite = leftArmSprites[index];
             rightArmRenderer.sprite = rightArmSprites[index];
         }
+        if (PlayerPrefs.GetString("TorsoUnlock")[index] == '1'
+            && torsoCriteriaRender != null)
+        {
+            torsoRenderer.color = Color.white;
+            leftArmRenderer.color = Color.white;
+            rightArmRenderer.color = Color.white;
+            torsoCriteriaRender.enabled = false;
+        }
+        else if (torsoCriteriaRender != null)
+        {
+            torsoRenderer.color = Color.black;
+            leftArmRenderer.color = Color.black;
+            rightArmRenderer.color = Color.black;
+            torsoCriteriaRender.enabled = true;
+            torsoCriteriaRender.GetComponent<TextMesh>().text =
+                              torsoUnlockCriteria[index];
+        }
     }
 
     private void DressLegs(int index)
@@ -109,16 +146,46 @@ public class ClothesController : MonoBehaviour {
             crotchRenderer.enabled = true;
             leftLegRenderer.enabled = true;
             rightLegRenderer.enabled = true;
+
             crotchRenderer.sprite = crotchSprites[index];
             leftLegRenderer.sprite = leftLegSprites[index];
             rightLegRenderer.sprite = rightLegSprites[index];
             wang.enabled = false;
             wong.enabled = false;
         }
+        if (PlayerPrefs.GetString("TrouserUnlock")[index] == '1'
+            && trouserCriteriaRender != null)
+        {
+            crotchRenderer.color = Color.white;
+            leftLegRenderer.color = Color.white;
+            rightLegRenderer.color = Color.white;
+            trouserCriteriaRender.enabled = false;
+            wang.color = Color.white;
+            wong.color = Color.white;
+        }
+        else if (trouserCriteriaRender != null)
+        {
+            crotchRenderer.color = Color.black;
+            leftLegRenderer.color = Color.black;
+            rightLegRenderer.color = Color.black;
+            trouserCriteriaRender.enabled = true;
+            trouserCriteriaRender.GetComponent<TextMesh>().text =
+                              trouserUnlockCriteria[index];
+            wang.color = Color.black;
+            wong.color = Color.black;
+        }
     }
 
     public void GoToMenu()
     {
+        if (PlayerPrefs.GetString("TorsoUnlock")[torsoIndex] == '1')
+        {
+            PlayerPrefs.SetInt("TorsoIndex", torsoIndex);
+        }
+        if (PlayerPrefs.GetString("TrouserUnlock")[trouserIndex] == '1')
+        {
+            PlayerPrefs.SetInt("TrouserIndex", trouserIndex);
+        }
         SceneManager.LoadScene("menu");
     }
 }
