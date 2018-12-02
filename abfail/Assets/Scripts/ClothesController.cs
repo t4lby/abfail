@@ -88,7 +88,7 @@ public class ClothesController : MonoBehaviour {
         }
         if (!PlayerPrefs.HasKey("TorsoUnlock"))
         {
-            PlayerPrefs.SetString("TorsoUnlock", "1111110");
+            PlayerPrefs.SetString("TorsoUnlock", "1111100");
         }
         if (!PlayerPrefs.HasKey("TrouserUnlock"))
         {

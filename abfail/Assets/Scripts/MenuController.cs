@@ -22,6 +22,8 @@ public class MenuController : MonoBehaviour {
 
     public void LoadCredits()
     {
+        //qq: needs removing, left for testing.
+        PlayerPrefs.SetString("TorsoUnlock", "1111100");
         MenuObjects.ForEach(o => o.SetActive(false));
         CreditsObjects.ForEach(o => o.SetActive(true));
     }

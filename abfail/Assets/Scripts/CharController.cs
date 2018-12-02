@@ -35,6 +35,7 @@ public class CharController : MonoBehaviour {
     public GameObject bestScore;
     public GameObject currentScore;
     public GameObject currentSpeed;
+    public GameObject FBShare;
     public GameObject[] healthObjects;
 	
     private bool charAttemptedStop;
@@ -189,6 +190,7 @@ public class CharController : MonoBehaviour {
         failImage.enabled = true;
         bestScore.SetActive(true);
         finalScore.SetActive(true);
+        FBShare.SetActive(true);
         restartButton.SetActive(true);
         currentScore.SetActive(false);
         currentSpeed.SetActive(false);
@@ -241,6 +243,11 @@ public class CharController : MonoBehaviour {
         {
             UnlockTrouserIndex(3);
         }
+    }
+
+    public void SuccesfulShareUnlock()
+    {
+        UnlockTorsoIndex(5);
     }
 
     private void UnlockTorsoIndex(int index)
