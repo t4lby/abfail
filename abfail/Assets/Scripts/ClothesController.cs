@@ -10,9 +10,15 @@ public class ClothesController : MonoBehaviour {
     public SpriteRenderer torsoRenderer;
     public SpriteRenderer leftArmRenderer;
     public SpriteRenderer rightArmRenderer;
+    public SpriteRenderer lowerLeftArmRenderer;
+    public SpriteRenderer lowerRightArmRenderer;
+
     public SpriteRenderer crotchRenderer;
     public SpriteRenderer leftLegRenderer;
     public SpriteRenderer rightLegRenderer;
+    public SpriteRenderer lowerLeftLegRenderer;
+    public SpriteRenderer lowerRightLegRenderer;
+
     public Renderer trouserCriteriaRender;
     public Renderer torsoCriteriaRender;
 
@@ -24,12 +30,16 @@ public class ClothesController : MonoBehaviour {
     public List<Sprite> torsoSprites;
     public List<Sprite> leftArmSprites;
     public List<Sprite> rightArmSprites;
+    public List<Sprite> lowerLeftArmSprites;
+    public List<Sprite> lowerRightArmSprites;
 
     public List<String> torsoUnlockCriteria;
 
     public List<Sprite> crotchSprites;
     public List<Sprite> leftLegSprites;
     public List<Sprite> rightLegSprites;
+    public List<Sprite> lowerLeftLegSprites;
+    public List<Sprite> lowerRightLegSprites;
 
     public List<String> trouserUnlockCriteria;
 
@@ -43,7 +53,9 @@ public class ClothesController : MonoBehaviour {
     {
         //Check consistency of sprite counts.
         if (!(torsoSprites.Count == leftArmSprites.Count &&
-              torsoSprites.Count == rightArmSprites.Count))
+              torsoSprites.Count == rightArmSprites.Count &&
+              torsoSprites.Count == lowerRightArmSprites.Count &&
+              torsoSprites.Count == lowerLeftArmSprites.Count))
         {
             throw new UnityException("Counts for torso sprites are not equal!");
         }
@@ -52,7 +64,9 @@ public class ClothesController : MonoBehaviour {
             torsoCount = torsoSprites.Count;
         }
         if (!(crotchSprites.Count == leftLegSprites.Count &&
-              crotchSprites.Count == rightLegSprites.Count))
+              crotchSprites.Count == rightLegSprites.Count &&
+              crotchSprites.Count == lowerRightLegSprites.Count &&
+              crotchSprites.Count == lowerLeftLegSprites.Count))
         {
             throw new UnityException("Counts for trouser sprites are not equal!");
         }
@@ -78,7 +92,6 @@ public class ClothesController : MonoBehaviour {
         {
             PlayerPrefs.SetString("TrouserUnlock", "10");
         }
-
         DressTorso(PlayerPrefs.GetInt("TorsoIndex"));
         DressLegs(PlayerPrefs.GetInt("TrouserIndex"));
     }
@@ -102,15 +115,22 @@ public class ClothesController : MonoBehaviour {
             torsoRenderer.enabled = false;
             leftArmRenderer.enabled = false;
             rightArmRenderer.enabled = false;
+            lowerLeftArmRenderer.enabled = false;
+            lowerRightArmRenderer.enabled = false;
         }
         else
         {
             torsoRenderer.enabled = true;
             leftArmRenderer.enabled = true;
             rightArmRenderer.enabled = true;
+            lowerLeftArmRenderer.enabled = true;
+            lowerRightArmRenderer.enabled = true;
+
             torsoRenderer.sprite = torsoSprites[index];
             leftArmRenderer.sprite = leftArmSprites[index];
             rightArmRenderer.sprite = rightArmSprites[index];
+            lowerLeftArmRenderer.sprite = lowerLeftArmSprites[index];
+            lowerRightArmRenderer.sprite = lowerRightArmSprites[index];
         }
         if (PlayerPrefs.GetString("TorsoUnlock")[index] == '1'
             && torsoCriteriaRender != null)
@@ -118,6 +138,9 @@ public class ClothesController : MonoBehaviour {
             torsoRenderer.color = Color.white;
             leftArmRenderer.color = Color.white;
             rightArmRenderer.color = Color.white;
+            lowerLeftArmRenderer.color = Color.white;
+            lowerRightArmRenderer.color = Color.white;
+
             torsoCriteriaRender.enabled = false;
         }
         else if (torsoCriteriaRender != null)
@@ -125,6 +148,9 @@ public class ClothesController : MonoBehaviour {
             torsoRenderer.color = Color.black;
             leftArmRenderer.color = Color.black;
             rightArmRenderer.color = Color.black;
+            lowerLeftArmRenderer.color = Color.black;
+            lowerRightArmRenderer.color = Color.black;
+
             torsoCriteriaRender.enabled = true;
             torsoCriteriaRender.GetComponent<TextMesh>().text =
                               torsoUnlockCriteria[index];
@@ -138,6 +164,9 @@ public class ClothesController : MonoBehaviour {
             crotchRenderer.enabled = false;
             leftLegRenderer.enabled = false;
             rightLegRenderer.enabled = false;
+            lowerLeftLegRenderer.enabled = false;
+            lowerRightLegRenderer.enabled = false;
+
             wang.enabled = true;
             wong.enabled = true;
         }
@@ -146,10 +175,15 @@ public class ClothesController : MonoBehaviour {
             crotchRenderer.enabled = true;
             leftLegRenderer.enabled = true;
             rightLegRenderer.enabled = true;
+            lowerLeftLegRenderer.enabled = true;
+            lowerRightLegRenderer.enabled = true;
 
             crotchRenderer.sprite = crotchSprites[index];
             leftLegRenderer.sprite = leftLegSprites[index];
             rightLegRenderer.sprite = rightLegSprites[index];
+            lowerLeftLegRenderer.sprite = lowerLeftLegSprites[index];
+            lowerRightLegRenderer.sprite = lowerRightLegSprites[index];
+
             wang.enabled = false;
             wong.enabled = false;
         }
@@ -159,7 +193,11 @@ public class ClothesController : MonoBehaviour {
             crotchRenderer.color = Color.white;
             leftLegRenderer.color = Color.white;
             rightLegRenderer.color = Color.white;
+            lowerLeftLegRenderer.color = Color.white;
+            lowerRightLegRenderer.color = Color.white;
+
             trouserCriteriaRender.enabled = false;
+
             wang.color = Color.white;
             wong.color = Color.white;
         }
@@ -168,6 +206,9 @@ public class ClothesController : MonoBehaviour {
             crotchRenderer.color = Color.black;
             leftLegRenderer.color = Color.black;
             rightLegRenderer.color = Color.black;
+            lowerLeftLegRenderer.color = Color.black;
+            lowerRightLegRenderer.color = Color.black;
+
             trouserCriteriaRender.enabled = true;
             trouserCriteriaRender.GetComponent<TextMesh>().text =
                               trouserUnlockCriteria[index];
