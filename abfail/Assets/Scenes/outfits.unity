@@ -1345,7 +1345,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 358330447}
   m_LocalRotation: {x: 0, y: 0, z: -0.99547946, w: 0.09497711}
-  m_LocalPosition: {x: 0.11, y: 0.3, z: 0}
+  m_LocalPosition: {x: 0.09, y: 0.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1171846591}
@@ -1946,7 +1946,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 668399342}
   m_LocalRotation: {x: 0, y: 0, z: 0.98977625, w: 0.14262883}
-  m_LocalPosition: {x: -0.07, y: 0.3, z: 0}
+  m_LocalPosition: {x: -0.05, y: 0.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 280476212}
@@ -3142,13 +3142,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1602735296}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c674c013ead00495c9a7869329e6652e, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f230db8bd0908a4ca361e659c4e91a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CalmFace: {fileID: 21300000, guid: 6d791dd3728c245a886e5cc1115cfca6, type: 3}
-  LessCalmFace: {fileID: 21300000, guid: a788863e5e3b14eef9b9d41efca0fafc, type: 3}
-  PanickedFace: {fileID: 21300000, guid: bc57380c9d4ef47009585130f4165f53, type: 3}
-  DeadFace: {fileID: 0}
+  Faces:
+  - {fileID: 21300000, guid: a504218b81fbe49189b733b1c02763ae, type: 3}
+  - {fileID: 21300000, guid: 7c63f098e6d4a4a82ac7ed31afd3c7e7, type: 3}
+  - {fileID: 21300000, guid: 0d694608475454bf7a46f47f2822a6e2, type: 3}
+  - {fileID: 21300000, guid: 18c6cf57d79ad41608e2e928e7fff072, type: 3}
+  - {fileID: 21300000, guid: 90d049fa2eea3422194cfbc35dbe72ad, type: 3}
 --- !u!212 &1602735298
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3184,7 +3186,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 04ccdf353dbb5a14d89345176083e55f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a504218b81fbe49189b733b1c02763ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3496,7 +3498,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1748319900}
   m_LocalRotation: {x: 0, y: 0, z: -0.0052359584, w: 0.9999863}
-  m_LocalPosition: {x: 0.1, y: -0.39, z: 0}
+  m_LocalPosition: {x: 0.01, y: -0.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1807045881}
@@ -3933,7 +3935,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1869809772}
   m_LocalRotation: {x: -0, y: -0, z: -0.023908736, w: 0.9997142}
-  m_LocalPosition: {x: 0.09, y: -0.17, z: 0}
+  m_LocalPosition: {x: 0.03, y: -0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1831140257}
@@ -4039,30 +4041,73 @@ MonoBehaviour:
   torsoCriteriaRender: {fileID: 1365460354}
   wang: {fileID: 1749349806}
   wong: {fileID: 1403038725}
+  clothesFaceController: {fileID: 1602735297}
   torsoSprites:
   - {fileID: 21300000, guid: 78f09b7109f104d2fb1bf3b26d93b3bd, type: 3}
+  - {fileID: 21300000, guid: 317fa4702346b4c20978680729b4a577, type: 3}
+  - {fileID: 21300000, guid: f7bda04ae37224b13b1032318d42f0f8, type: 3}
+  - {fileID: 21300000, guid: ba5d2bf14ac9a48159569a7a9f7ce1e7, type: 3}
+  - {fileID: 21300000, guid: 49cc05a7299734f6c97379c26e136739, type: 3}
+  - {fileID: 21300000, guid: fa724adfbd25e4aeca122bb3dde8a1b9, type: 3}
   leftArmSprites:
   - {fileID: 21300000, guid: 7242e4980d3a24cea86e632cac366881, type: 3}
+  - {fileID: 21300000, guid: 7f6fbcaa9dbd0439ca2cf147be77283f, type: 3}
+  - {fileID: 21300000, guid: 7e691a66cb4cc441497877174d115bd3, type: 3}
+  - {fileID: 21300000, guid: 4526550514f5b4d309feaa7cb37ef43c, type: 3}
+  - {fileID: 21300000, guid: ce03b6b0f47bc455ca2d85f1a232f14e, type: 3}
+  - {fileID: 21300000, guid: 9e5dfc6119fd643f39c29f47b9dcc756, type: 3}
   rightArmSprites:
   - {fileID: 21300000, guid: eafd2a2db08c44e808dcca53bdbb3ba5, type: 3}
+  - {fileID: 21300000, guid: b7b8cea77cf5f4b0fa2874649af4a519, type: 3}
+  - {fileID: 21300000, guid: a9b744e97be0d4fe894dc5f982148685, type: 3}
+  - {fileID: 21300000, guid: df153444423754af1b3506388298f677, type: 3}
+  - {fileID: 21300000, guid: eeb1a1626d72347e5a8e923c00c2d4ec, type: 3}
+  - {fileID: 21300000, guid: 713c21658dff543c09f46e066b037df1, type: 3}
   lowerLeftArmSprites:
   - {fileID: 21300000, guid: 2c2902184aaae42f690492cec26fa92a, type: 3}
+  - {fileID: 21300000, guid: f5054f00bff534c80973cd84f00150a3, type: 3}
+  - {fileID: 21300000, guid: 6d4c305d018c141b79742d7f6f9fb184, type: 3}
+  - {fileID: 21300000, guid: 6d4c305d018c141b79742d7f6f9fb184, type: 3}
+  - {fileID: 21300000, guid: 6d4c305d018c141b79742d7f6f9fb184, type: 3}
+  - {fileID: 21300000, guid: 6d4c305d018c141b79742d7f6f9fb184, type: 3}
   lowerRightArmSprites:
   - {fileID: 21300000, guid: 9a06b488e0d804423aa7ceb4b23e6b3e, type: 3}
+  - {fileID: 21300000, guid: e3877f56f740741ef970269799af3a26, type: 3}
+  - {fileID: 21300000, guid: 6d4c305d018c141b79742d7f6f9fb184, type: 3}
+  - {fileID: 21300000, guid: 6d4c305d018c141b79742d7f6f9fb184, type: 3}
+  - {fileID: 21300000, guid: 6d4c305d018c141b79742d7f6f9fb184, type: 3}
+  - {fileID: 21300000, guid: 6d4c305d018c141b79742d7f6f9fb184, type: 3}
   torsoUnlockCriteria:
+  - na
+  - na
+  - na
+  - na
+  - na
   - na
   - Get a score of 10 or more!
   crotchSprites:
+  - {fileID: 21300000, guid: 20da0f2df68e041e3b76812d9365eb82, type: 3}
+  - {fileID: 21300000, guid: f1808119b77814a5da6e57606a229d60, type: 3}
   - {fileID: 21300000, guid: 2ad5945e357074b9ba7fc3bef4c4ac4a, type: 3}
   leftLegSprites:
+  - {fileID: 21300000, guid: b641591d2aa104872a53f9b0578a8316, type: 3}
+  - {fileID: 21300000, guid: c717f5224c06a4279a8403a5d9b70bc1, type: 3}
   - {fileID: 21300000, guid: 596f2033722294c36812ab61c3d68e50, type: 3}
   rightLegSprites:
+  - {fileID: 21300000, guid: d4a078f875c354146afdfad47a25f850, type: 3}
+  - {fileID: 21300000, guid: d15945e4f75c14db69c2fbdd8511b950, type: 3}
   - {fileID: 21300000, guid: 80de7403bdefb49649d6b460d3e0d936, type: 3}
   lowerLeftLegSprites:
   - {fileID: 21300000, guid: 6d4c305d018c141b79742d7f6f9fb184, type: 3}
+  - {fileID: 21300000, guid: fe557924cf2884a5393174d0c50ea302, type: 3}
+  - {fileID: 21300000, guid: 6d4c305d018c141b79742d7f6f9fb184, type: 3}
   lowerRightLegSprites:
   - {fileID: 21300000, guid: 6d4c305d018c141b79742d7f6f9fb184, type: 3}
+  - {fileID: 21300000, guid: 9ea9660e2b3eb45f98969de0769a3afe, type: 3}
+  - {fileID: 21300000, guid: 6d4c305d018c141b79742d7f6f9fb184, type: 3}
   trouserUnlockCriteria:
+  - na
+  - na
   - na
   - Get a score of 15 or more!
 --- !u!1 &1965207049
@@ -4163,7 +4208,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1968584360}
   m_LocalRotation: {x: 0, y: 0, z: 0.048239592, w: 0.99883586}
-  m_LocalPosition: {x: -0.1, y: -0.26, z: 0}
+  m_LocalPosition: {x: -0.04, y: -0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 340637865}
@@ -4359,7 +4404,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2017655718}
   m_LocalRotation: {x: 0, y: 0, z: -0.00017452026, w: 1}
-  m_LocalPosition: {x: -0.1, y: -0.32, z: 0}
+  m_LocalPosition: {x: 0.01, y: -0.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 461424102}

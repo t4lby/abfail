@@ -25,6 +25,8 @@ public class ClothesController : MonoBehaviour {
     public SpriteRenderer wang;
     public SpriteRenderer wong;
 
+    public ClothesFaceController clothesFaceController;
+
     // The following sprites sets must be ordered together.
     // 1 + the maximum index is naked in game.
     public List<Sprite> torsoSprites;
@@ -86,26 +88,30 @@ public class ClothesController : MonoBehaviour {
         }
         if (!PlayerPrefs.HasKey("TorsoUnlock"))
         {
-            PlayerPrefs.SetString("TorsoUnlock", "10");
+            PlayerPrefs.SetString("TorsoUnlock", "1111110");
         }
         if (!PlayerPrefs.HasKey("TrouserUnlock"))
         {
-            PlayerPrefs.SetString("TrouserUnlock", "10");
+            PlayerPrefs.SetString("TrouserUnlock", "1110");
         }
-        DressTorso(PlayerPrefs.GetInt("TorsoIndex"));
-        DressLegs(PlayerPrefs.GetInt("TrouserIndex"));
+        torsoIndex = PlayerPrefs.GetInt("TorsoIndex");
+        trouserIndex = PlayerPrefs.GetInt("TrouserIndex");
+        DressTorso(torsoIndex);
+        DressLegs(trouserIndex);
     }
 
     public void IncrementTorsoIndex(int increment)
     {
         torsoIndex = (torsoIndex + increment + torsoCount + 1) % (torsoCount + 1);
         DressTorso(torsoIndex);
+        clothesFaceController.RandomiseFace();
     }
 
     public void IncrementTrouserIndex(int increment)
     {
         trouserIndex = (trouserIndex + increment + trouserCount + 1) % (trouserCount + 1);
         DressLegs(trouserIndex);
+        clothesFaceController.RandomiseFace();
     }
 
     private void DressTorso(int index)
