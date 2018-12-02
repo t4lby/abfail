@@ -232,14 +232,14 @@ public class CharController : MonoBehaviour {
     public void processUnlocks()
     {
         // hard coded unlock logic
-        if (score > 10)
-        {
-            UnlockTorsoIndex(1);
-        }
-
         if (score > 15)
         {
-            UnlockTrouserIndex(1);
+            UnlockTorsoIndex(6);
+        }
+
+        if (score > 20)
+        {
+            UnlockTrouserIndex(3);
         }
     }
 

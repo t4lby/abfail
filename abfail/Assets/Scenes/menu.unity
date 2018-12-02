@@ -1093,6 +1093,54 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1440461784}
   m_CullTransparentMesh: 0
+--- !u!1 &1729805055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1729805056}
+  - component: {fileID: 1729805057}
+  m_Layer: 0
+  m_Name: MiniCharacterSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1729805056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1729805055}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 6.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1729805057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1729805055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9e9f96967dceea4a9bc953496baf988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minScale: 0.03
+  maxScale: 0.25
+  spawnRadius: 2
+  ragDoll: 100
+  minSpawnFrequency: 2
+  maxSpawnFrequency: 12
+  MockPlayerPrefab: {fileID: 1534875557635220, guid: 27ae6d0a0ee00204bac18e46b853e631,
+    type: 2}
 --- !u!1 &1786488252
 GameObject:
   m_ObjectHideFlags: 0

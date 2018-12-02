@@ -252,7 +252,6 @@ GameObject:
   - component: {fileID: 212633119177951264}
   - component: {fileID: 50800868182252898}
   - component: {fileID: 58189867065957930}
-  - component: {fileID: 114052579397648044}
   - component: {fileID: 82004568284308978}
   m_Layer: 0
   m_Name: characterHead
@@ -339,8 +338,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4364105694881856}
+  - component: {fileID: 114577913308288230}
   m_Layer: 0
-  m_Name: Character
+  m_Name: MockCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -869,7 +869,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -889,7 +889,7 @@ Rigidbody2D:
   m_Mass: 0.1
   m_LinearDrag: 0.5
   m_AngularDrag: 1
-  m_GravityScale: 1.5
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -909,7 +909,7 @@ Rigidbody2D:
   m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -929,7 +929,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -949,7 +949,7 @@ Rigidbody2D:
   m_Mass: 0.5
   m_LinearDrag: 1
   m_AngularDrag: 1
-  m_GravityScale: 1.5
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -969,7 +969,7 @@ Rigidbody2D:
   m_Mass: 0.1
   m_LinearDrag: 0.5
   m_AngularDrag: 1
-  m_GravityScale: 2
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -989,7 +989,7 @@ Rigidbody2D:
   m_Mass: 0.1
   m_LinearDrag: 0.5
   m_AngularDrag: 1
-  m_GravityScale: 2
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1009,7 +1009,7 @@ Rigidbody2D:
   m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 4
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1029,7 +1029,7 @@ Rigidbody2D:
   m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 4
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1049,7 +1049,7 @@ Rigidbody2D:
   m_Mass: 0.5
   m_LinearDrag: 1
   m_AngularDrag: 1
-  m_GravityScale: 2
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1069,7 +1069,7 @@ Rigidbody2D:
   m_Mass: 0.1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1089,7 +1089,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1109,7 +1109,7 @@ Rigidbody2D:
   m_Mass: 0.5
   m_LinearDrag: 0.5
   m_AngularDrag: 1
-  m_GravityScale: 2
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1129,7 +1129,7 @@ Rigidbody2D:
   m_Mass: 0.1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 0.5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1365,55 +1365,6 @@ MonoBehaviour:
   LessCalmFace: {fileID: 21300000, guid: 736b1bf79d5b44784894f64d441f16af, type: 3}
   PanickedFace: {fileID: 21300000, guid: 18c6cf57d79ad41608e2e928e7fff072, type: 3}
   DeadFace: {fileID: 21300000, guid: a318e56e032ed498587804ef39ee37f7, type: 3}
---- !u!114 &114052579397648044
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1393675600871210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3146e63a5f444aa46868b4cca48cc02c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CharacterRbs:
-  - {fileID: 50298744667575084}
-  - {fileID: 50789856466033496}
-  - {fileID: 50845808413560986}
-  - {fileID: 50575715647563826}
-  - {fileID: 50584240532971306}
-  - {fileID: 50800868182252898}
-  - {fileID: 50449200393401276}
-  - {fileID: 50661191730209178}
-  - {fileID: 50354272431742016}
-  - {fileID: 50021715246754988}
-  - {fileID: 50841729313553310}
-  - {fileID: 50444145287748630}
-  HandRbs:
-  - {fileID: 50449200393401276}
-  - {fileID: 50021715246754988}
-  deathSpeed: 25
-  jumpForce: 600
-  platformSpawner: {fileID: 0}
-  restartButton: {fileID: 0}
-  mainCamera: {fileID: 0}
-  ropeHandsXCoord: -1.4
-  platformSpawnAhead: 3
-  faceController: {fileID: 114043163293649290}
-  cameraController: {fileID: 0}
-  CalmSpeed: 10
-  PanicSpeed: 20
-  ScoreText: {fileID: 0}
-  speedText: {fileID: 0}
-  healthMaskImage: {fileID: 0}
-  failImage: {fileID: 0}
-  finalScore: {fileID: 0}
-  bestScore: {fileID: 0}
-  currentScore: {fileID: 0}
-  currentSpeed: {fileID: 0}
-  healthObjects:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &114236805094587794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1497,6 +1448,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9ea9660e2b3eb45f98969de0769a3afe, type: 3}
   - {fileID: 21300000, guid: 6d4c305d018c141b79742d7f6f9fb184, type: 3}
   trouserUnlockCriteria: []
+--- !u!114 &114577913308288230
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1534875557635220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21b925bbb152b0e4583c2e6d2e7a674f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Seconds: 10
 --- !u!212 &212042558025795410
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -2760,8 +2723,8 @@ HingeJoint2D:
     m_MaximumMotorForce: 10000
   m_UseLimits: 1
   m_AngleLimits:
-    m_LowerAngle: -90
-    m_UpperAngle: 90
+    m_LowerAngle: -10
+    m_UpperAngle: 10
 --- !u!233 &233456614983158156
 HingeJoint2D:
   m_ObjectHideFlags: 1
