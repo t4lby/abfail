@@ -543,9 +543,27 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Credits:\n\nAbfail was designed by Tate Young\n(Web / Graphic Designer)\n\nand
-    implemented by Alex Talbot \n(Software Engineer)\n\nAbfail is built using the
-    Unity Engine."
+  m_Text: 'Credits:
+
+
+    Prawn Star Studios
+
+    @PrawnStarStudio on Twitter
+
+    @PrawnStarStudios on Facebook & Instagram
+
+
+    The Team:
+
+    Tate - Design, Voice Acting
+
+    @tate7young on Instagram & Twitter
+
+
+    Alex - Programmer (Unity)
+
+
+    Richard - Sound Engineer, Best Facial Hair on the Block'
 --- !u!222 &930680207
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -569,7 +587,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 800}
+  m_SizeDelta: {x: 600, y: 1200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1011158329
 GameObject:
@@ -1658,9 +1676,14 @@ MonoBehaviour:
   m_Text: 'Instructions:
 
 
-    Absail from platform to platform. Slow your fall by tapping before you reach a
-    platform, but be weary, you only get one tap per platform. Get as far as you can
-    before breaking your legs!'
+    How far can you abseil down? Watch your speed, you''re only human, your legs can''t
+    take much.
+
+
+    Tap to jump. Tap to slow your fall, you only get one chance to halt your descent.
+
+
+    Try to abseil not abfail.'
 --- !u!222 &2145653321
 CanvasRenderer:
   m_ObjectHideFlags: 0

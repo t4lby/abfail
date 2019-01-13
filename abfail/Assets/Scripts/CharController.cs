@@ -37,6 +37,10 @@ public class CharController : MonoBehaviour {
     public GameObject currentSpeed;
     public GameObject FBShare;
     public GameObject[] healthObjects;
+    public List<AudioClip> DeathClips;
+    public List<AudioClip> JumpClips;
+    public List<AudioClip> GoodLandClips;
+    public List<AudioClip> BadLandClips;
 	
     private bool charAttemptedStop;
     private float health;
@@ -44,6 +48,7 @@ public class CharController : MonoBehaviour {
     private Collider2D currentPlatformCollider;
     private List<TargetJoint2D> platformTargetJoints;
     private int score;
+    private bool windLoopStatus;
 
     private void Start()
     {
@@ -66,6 +71,9 @@ public class CharController : MonoBehaviour {
         {
             if (charStatus == Status.OnPlatform)
             {
+                this.GetComponent<AudioSource>().clip =
+                    JumpClips[Random.Range(0, JumpClips.Count - 1)];
+                this.GetComponent<AudioSource>().Play();
                 currentPlatformCollider.enabled = false;
                 charAttemptedStop = false;
                 charStatus = Status.Falling;
@@ -127,6 +135,18 @@ public class CharController : MonoBehaviour {
         if (speed < deathSpeed 
             && charStatus == Status.Falling)
         {
+            if (speed < deathSpeed / 2)
+            {
+                this.GetComponent<AudioSource>().clip =
+                    GoodLandClips[Random.Range(0, GoodLandClips.Count - 1)];
+                this.GetComponent<AudioSource>().Play();
+            }
+            else
+            {
+                this.GetComponent<AudioSource>().clip =
+                    BadLandClips[Random.Range(0, BadLandClips.Count - 1)];
+                this.GetComponent<AudioSource>().Play();
+            }
             charStatus = Status.OnPlatform;
             platformTargetJoints.Add(this.gameObject.AddComponent<TargetJoint2D>());
             var feet = FindObjectsOfType<Transform>()
@@ -143,6 +163,8 @@ public class CharController : MonoBehaviour {
         else if (charStatus == Status.Falling)
         {
             //kill
+            this.GetComponent<AudioSource>().clip =
+                DeathClips[Random.Range(0, DeathClips.Count - 1)];
             this.GetComponent<AudioSource>().Play();
             CharacterRbs
                 .ForEach
