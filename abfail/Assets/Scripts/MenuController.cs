@@ -39,4 +39,18 @@ public class MenuController : MonoBehaviour {
     {
         SceneManager.LoadScene("outfits");
     }
+
+    private float _resets = 0;
+    public void IncrementResetCount()
+    {
+        _resets += 1;
+        if (_resets > 2)
+        {
+            PlayerPrefs.SetString("TorsoUnlock", "11111100");
+            PlayerPrefs.SetString("TrouserUnlock", "1110");
+            PlayerPrefs.SetInt("BestScore", 0);
+            PlayerPrefs.SetInt("TorsoIndex", 5);
+            PlayerPrefs.SetInt("TrouserIndex", 0);
+        }
+    }
 }
