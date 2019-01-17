@@ -258,7 +258,7 @@ public class CharController : MonoBehaviour {
         // hard coded unlock logic
         if (score > 15)
         {
-            UnlockTorsoIndex(6);
+            UnlockTorsoIndex(7);
         }
 
         if (score > 20)

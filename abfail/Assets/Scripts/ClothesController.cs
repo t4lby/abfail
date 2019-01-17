@@ -90,9 +90,19 @@ public class ClothesController : MonoBehaviour {
         {
             PlayerPrefs.SetString("TorsoUnlock", "11111100");
         }
+        var saveString = PlayerPrefs.GetString("TorsoUnlock");
+        for (int i = saveString.Length; i < torsoCount + 1; i++)
+        {
+            saveString += "0";
+        }
         if (!PlayerPrefs.HasKey("TrouserUnlock"))
         {
             PlayerPrefs.SetString("TrouserUnlock", "1110");
+        }
+        saveString = PlayerPrefs.GetString("TrouserUnlock");
+        for (int i = saveString.Length; i < torsoCount + 1; i++)
+        {
+            saveString += "0";
         }
         torsoIndex = PlayerPrefs.GetInt("TorsoIndex");
         trouserIndex = PlayerPrefs.GetInt("TrouserIndex");
