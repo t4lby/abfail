@@ -112,14 +112,14 @@ public class ClothesController : MonoBehaviour {
 
     public void IncrementTorsoIndex(int increment)
     {
-        torsoIndex = (torsoIndex + increment + torsoCount + 1) % (torsoCount + 1);
+        torsoIndex = (torsoIndex + increment + torsoCount) % (torsoCount);
         DressTorso(torsoIndex);
         clothesFaceController.RandomiseFace();
     }
 
     public void IncrementTrouserIndex(int increment)
     {
-        trouserIndex = (trouserIndex + increment + trouserCount + 1) % (trouserCount + 1);
+        trouserIndex = (trouserIndex + increment + trouserCount) % (trouserCount);
         DressLegs(trouserIndex);
         clothesFaceController.RandomiseFace();
     }
