@@ -4453,7 +4453,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7e691a66cb4cc441497877174d115bd3, type: 3}
   - {fileID: 21300000, guid: 4526550514f5b4d309feaa7cb37ef43c, type: 3}
   - {fileID: 21300000, guid: ce03b6b0f47bc455ca2d85f1a232f14e, type: 3}
-  - {fileID: 21300000, guid: 810608b0f9f8449d4b8911f8ead3ff50, type: 3}
+  - {fileID: 21300000, guid: b0832714b846b4bda95483c2a4b23a2e, type: 3}
   - {fileID: 21300000, guid: 9e5dfc6119fd643f39c29f47b9dcc756, type: 3}
   rightArmSprites:
   - {fileID: 21300000, guid: eafd2a2db08c44e808dcca53bdbb3ba5, type: 3}
@@ -4461,7 +4461,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a9b744e97be0d4fe894dc5f982148685, type: 3}
   - {fileID: 21300000, guid: df153444423754af1b3506388298f677, type: 3}
   - {fileID: 21300000, guid: eeb1a1626d72347e5a8e923c00c2d4ec, type: 3}
-  - {fileID: 21300000, guid: b0832714b846b4bda95483c2a4b23a2e, type: 3}
+  - {fileID: 21300000, guid: 810608b0f9f8449d4b8911f8ead3ff50, type: 3}
   - {fileID: 21300000, guid: 713c21658dff543c09f46e066b037df1, type: 3}
   lowerLeftArmSprites:
   - {fileID: 21300000, guid: 2c2902184aaae42f690492cec26fa92a, type: 3}

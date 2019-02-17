@@ -42,10 +42,11 @@ public class FacebookManager : MonoBehaviour
 
     public void Share()
     {
-        FB.ShareLink(contentTitle: "Badger Boyz R Gr8",
-            contentURL: new System.Uri("http://badgerboysband.com"),
-            contentDescription: "good times",
-            callback: OnShare);
+        FB.ShareLink(contentTitle: "ABFAIL reflex rage game",
+                     contentURL: new System.Uri("https://play.google.com/store/apps/details?id=com.PrawnStarStudios.Abfail"),
+                     contentDescription: "I failed at abfail",
+                     photoURL: new System.Uri("https://lh3.googleusercontent.com/dT1jxSDN37ZiP4RDsUt2LJn_3NA7xXhChSHVgHosSrHw86MlSsHCZyM6D0YfCdI7ODs=s360-rw"),
+                     callback: OnShare);
     }
 
     private void OnShare(IShareResult result)
